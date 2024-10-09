@@ -1,6 +1,6 @@
 <?php
 $host = "mysql:host=localhost:3306;dbname=project";
-$username = "bao";
+$username = "root";
 $pass = "1";
 try {
     $conn = new PDO($host, $username, $pass);
