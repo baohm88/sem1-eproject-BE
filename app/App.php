@@ -23,8 +23,6 @@ class App
     private function handleURL()
     {
         $uri =  $this->getURI();
-        // var_dump($uri);
-        // die();
         if ($uri != null) {
 
             $explodedURI = explode("/", $uri);
