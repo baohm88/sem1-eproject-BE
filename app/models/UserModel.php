@@ -69,6 +69,7 @@ class UserModel extends BaseController
             $stmt->bindParam('username', $username, PDO::PARAM_STR);
             $stmt->execute();
             $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            // $data = $stmt->fetch(PDO::FETCH_OBJ);
 
             if (!empty($data)) {
                 $password = $oUser->get_password();
