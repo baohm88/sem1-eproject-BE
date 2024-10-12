@@ -69,7 +69,6 @@ class UserModel extends BaseController
             $stmt->bindParam('username', $username, PDO::PARAM_STR);
             $stmt->execute();
             $data = $stmt->fetch(PDO::FETCH_ASSOC);
-            // $data = $stmt->fetch(PDO::FETCH_OBJ);
 
             if (!empty($data)) {
                 $password = $oUser->get_password();
@@ -185,9 +184,9 @@ class UserModel extends BaseController
             // $stmt->debugDumpParams();
             // Execute the statement
             $stmt->execute();
-            $this->FactoryMessage("Success", "User data changed successfully");
+            $this->FactoryMessage("success", "User data changed successfully");
         } else {
-            $this->FactoryMessage("Error", "User ID Not Found");
+            $this->FactoryMessage("error", "User ID Not Found");
         }
     }
 }

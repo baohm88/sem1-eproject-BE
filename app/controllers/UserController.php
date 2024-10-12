@@ -28,7 +28,6 @@ class UserController extends BaseController
                 $this->__instanceUser->set_address($input['address']);
                 $this->__instanceUser->set_user_image($input['user_image']);
                 $this->__instanceModel->createNewUser($this->__instanceUser);
-                $data = $this->__instanceModel->checkUserExist($this->__instanceUser);
                 if (empty($this->__instanceModel->checkUserExist($this->__instanceUser))) {
                     $this->FactoryMessage("error", "Account Not Yet Created");
                 } else {
@@ -45,9 +44,8 @@ class UserController extends BaseController
             $this->__instanceUser->set_username($input["username"]);
             $this->__instanceUser->set_password($input["password"]);
             $data = $this->__instanceModel->checkUserExist($this->__instanceUser);
-            //* remove password field on the return value   
+            //* remove password field on the return value
             unset($data["password"]);
-            // unset($data["user_image"]);
             if ($data != null && $data["user_id"] != null) {
                 $_SESSION["username"] = $this->__instanceUser->get_username();
                 $this->FactoryMessage("success", "Login successfully", $data);
@@ -76,7 +74,7 @@ class UserController extends BaseController
             if ($aUserData != false) {
                 $this->FactoryMessage("success", "Get User Info Successfully", $aUserData);
             } else {
-                $this->FactoryMessage("success", "User data not exist");
+                $this->FactoryMessage("error", "User data not exist");
             }
         } else if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $inputs = json_decode(file_get_contents('php://input'), true);
