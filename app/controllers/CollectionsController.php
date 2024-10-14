@@ -49,7 +49,9 @@ class CollectionsController extends BaseController
             max_price: $params["max_price"] ?? null,
             desc: $params["desc"] ?? true
         );
-        $this->FactoryMessage("success", "This is products array", $data);
+        if (!empty($data)) {
+            $this->FactoryMessage("success", "This is products array", $data);
+        }
     }
 
     public function product($params = [])
@@ -65,6 +67,8 @@ class CollectionsController extends BaseController
 
         // If the product exists, return it; otherwise, return an error message
         if ($product) {
+            $product_ratings = $this->__instanceModel->getProductRatingsById($productId);
+            $product['product_ratings'] = $product_ratings; // Corrected syntax here
             $this->FactoryMessage("success", "Product found", $product);
         } else {
             $this->FactoryMessage("error", "Product not found");
